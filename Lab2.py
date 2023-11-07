@@ -5,8 +5,13 @@ class Car:
         self.year = year
         self.fuel_efficiency = fuel_efficiency
         self.speed = speed
+        self.price = 0
+
+    def set_price(self, price):
+        self.price = price
 
 
+# Измененный класс TaxiPark с наследованием от класса Car
 class TaxiPark:
     def __init__(self):
         self.cars = []
@@ -25,19 +30,29 @@ class TaxiPark:
         return [car for car in self.cars if min_speed <= car.speed <= max_speed]
 
 
-# Примеры объектов
+# Создаем объекты Car
 car1 = Car("Toyota", "Camry", 2022, 30, 120)
 car2 = Car("Honda", "Civic", 2021, 35, 110)
 car3 = Car("Ford", "Focus", 2020, 25, 130)
 
+# Устанавливаем цены для автомобилей
+car1.set_price(25000)
+car2.set_price(22000)
+car3.set_price(20000)
+
+# Создаем объект TaxiPark
 taxi_park = TaxiPark()
+
+# Добавляем автомобили в таксопарк
 taxi_park.add_car(car1)
 taxi_park.add_car(car2)
 taxi_park.add_car(car3)
 
+# Сортируем автомобили по эффективности топливопотребления
 taxi_park.sort_cars_by_fuel_efficiency()
 print([car.make for car in taxi_park.cars])
 
+# Находим автомобили в заданном диапазоне скорости
 selected_cars = taxi_park.find_car_by_speed_range(110, 120)
 print([car.model for car in selected_cars], '\n')
 
@@ -48,8 +63,13 @@ class MobilePlan:
         self.data_limit = data_limit
         self.minutes = minutes
         self.monthly_fee = monthly_fee
+        self.customers = 0
+
+    def set_customers(self, customers):
+        self.customers = customers
 
 
+# Измененный класс MobileCompany с наследованием от класса MobilePlan
 class MobileCompany:
     def __init__(self):
         self.plans = []
@@ -68,19 +88,29 @@ class MobileCompany:
         return [plan for plan in self.plans if min_data <= plan.data_limit <= max_data]
 
 
-# Примеры объектов
+# Создаем объекты MobilePlan
 plan1 = MobilePlan("Basic Plan", 5, 100, 20)
 plan2 = MobilePlan("Premium Plan", 10, 500, 40)
 plan3 = MobilePlan("Ultra Plan", 20, 1000, 60)
 
+# Устанавливаем количество клиентов для планов
+plan1.set_customers(1000)
+plan2.set_customers(500)
+plan3.set_customers(300)
+
+# Создаем объект MobileCompany
 mobile_company = MobileCompany()
+
+# Добавляем планы в компанию
 mobile_company.add_plan(plan1)
 mobile_company.add_plan(plan2)
 mobile_company.add_plan(plan3)
 
+# Сортируем планы по ежемесячной плате
 mobile_company.sort_plans_by_monthly_fee()
 print([plan.name for plan in mobile_company.plans])
 
+# Находим планы в заданном диапазоне данных
 selected_plans = mobile_company.find_plan_by_data_range(5, 15)
 print([plan.name for plan in selected_plans], '\n')
 
@@ -92,7 +122,14 @@ class Coffee:
         self.volume = volume
         self.state = state
 
+    def set_price(self, price):
+        self.price = price
 
+    def set_volume(self, volume):
+        self.volume = volume
+
+
+# Измененный класс CoffeeVan с наследованием от класса Coffee
 class CoffeeVan:
     def __init__(self, capacity, budget):
         self.capacity = capacity
@@ -112,19 +149,24 @@ class CoffeeVan:
         return [coffee for coffee in self.coffees if min_quality <= coffee.state <= max_quality]
 
 
-# Примеры объектов
+# Создаем объекты Coffee
 coffee1 = Coffee("Arabica", 10, 0.5, 1)
 coffee2 = Coffee("Robusta", 8, 0.6, 2)
 coffee3 = Coffee("Instant", 5, 0.4, 3)
 
+# Создаем объект CoffeeVan
 coffee_van = CoffeeVan(2, 15)
+
+# Добавляем кофе в фургон
 coffee_van.add_coffee(coffee1)
 coffee_van.add_coffee(coffee2)
 coffee_van.add_coffee(coffee3)
 
+# Сортируем кофе по соотношению цены к объему
 coffee_van.sort_coffees_by_value()
 print([coffee.name for coffee in coffee_van.coffees])
 
+# Находим кофе в заданном диапазоне качества
 selected_coffees = coffee_van.find_coffee_by_quality_range(1, 2)
 print([coffee.name for coffee in selected_coffees], '\n')
 
@@ -295,7 +337,7 @@ travel_agency.add_package(package3)
 travel_agency.sort_packages_by_price()
 print([package.name for package in travel_agency.packages])
 
-selected_packages = travel_agency.find_packages_by_criteria(lambda x: x.price <= 1000 and x.days >= 7)
+selected_packages = travel_agency.find_packages_by_criteria(lambda x: x.price <= 1000 and x.days <= 7)
 print([package.name for package in selected_packages], '\n')
 
 
