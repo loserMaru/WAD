@@ -1,6 +1,7 @@
 import socket
 import struct
 
+
 class MulticastServer:
     def __init__(self, group_ip, port):
         self.group_ip = group_ip
@@ -16,6 +17,7 @@ class MulticastServer:
         while True:
             message, address = self.server_socket.recvfrom(1024)
             print(f"Received message from {address}: {message.decode('utf-8')}")
+
 
 if __name__ == "__main__":
     server = MulticastServer("233.0.0.1", 1502)
